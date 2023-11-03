@@ -4,4 +4,42 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".calculator_2" />
+    tools:context=".calculator_2" >
+
+    <TextView
+        android:id="@+id/txt_center1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:shadowColor="#40000000"
+        android:shadowDy="4"
+        android:shadowRadius="4"
+        android:text="나의 학점"
+        android:textColor="#000000"
+        android:textSize="40sp"
+        tools:layout_editor_absoluteX="126dp"
+        tools:layout_editor_absoluteY="55dp" />
+
+    <Spinner
+        android:id="@+id/semesterSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="194dp" />
+
+    <Button
+        android:id="@+id/addButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="추가"
+        tools:layout_editor_absoluteX="161dp"
+        tools:layout_editor_absoluteY="562dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="-48dp"
+        tools:layout_editor_absoluteY="339dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
