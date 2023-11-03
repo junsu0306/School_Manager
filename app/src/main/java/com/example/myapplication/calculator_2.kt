@@ -56,4 +56,6 @@ class calculator_2 : Fragment() {
                 }
             }
     }
+
+
 }

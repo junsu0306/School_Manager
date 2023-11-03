@@ -51,7 +51,7 @@
             android:layout_height="match_parent"
             android:background="@drawable/courage_box"
             android:ems="10"
-            android:hint="나에게 하는 응원 메시지"
+            android:hint="나에게 하는 응원 메시지를 적어주세요"
             android:inputType="text"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
