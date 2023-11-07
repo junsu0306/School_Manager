@@ -13,31 +13,31 @@ class SubjectRepository {
 
     fun addSubject(semesterNumber: Int, subject: Subject) {
         // Firebase Realtime Database에 데이터 추가
-        subjectsReference.child("semesters").child(semesterNumber.toString()).push()
-            .setValue(subject)
+        val semesterReference = subjectsReference.child("semesters").child(semesterNumber.toString())
+        val newSubjectKey = semesterReference.push().key
+        newSubjectKey?.let {
+            semesterReference.child(it).setValue(subject)
+        }
     }
 
     fun getSubjects(semesterNumber: Int, callback: (List<Subject>) -> Unit) {
         // Firebase Realtime Database에서 데이터 읽어오기
-        subjectsReference.child("semesters").child(semesterNumber.toString())
-            .addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    val subjects = mutableListOf<Subject>()
+        val semesterReference = subjectsReference.child("semesters").child(semesterNumber.toString())
+        semesterReference.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val subjects = mutableListOf<Subject>()
 
-                    for (subjectSnapshot in dataSnapshot.children) {
-                        val subject = subjectSnapshot.getValue(Subject::class.java)
-                        subject?.let { subjects.add(it) }
-                    }
-
-                    callback(subjects)
+                for (subjectSnapshot in dataSnapshot.children) {
+                    val subject = subjectSnapshot.getValue(Subject::class.java)
+                    subject?.let { subjects.add(it) }
                 }
 
-                override fun onCancelled(databaseError: DatabaseError) {
-                    print("Error")
-                }
-            })
+                callback(subjects)
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                print("Error")
+            }
+        })
     }
-
-
-
 }

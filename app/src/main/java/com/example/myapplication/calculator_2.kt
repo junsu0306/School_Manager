@@ -40,26 +40,20 @@ class calculator_2 : Fragment() {
             val semesterNumber = 1 // 학기 번호를 설정하세요
 
             // SubjectViewModel을 통해 Firebase에 데이터 추가
-            viewModel.addSubjectToFirebase(courseName, grade, credits, semesterNumber)
-            binding.txt_course.text.clear()
-            binding.txt_grade.text.clear()
-            binding.txt_credit.text.clear()
+            viewModel.addSubjectToRepository(semesterNumber, courseName, grade, credits)
+            binding.txtCourse.text.clear()
+            binding.txtGrade.text.clear()
+            binding.txtCredit.text.clear()
 
 
 
         }
 
-        // RecyclerView 레이아웃 매니저 설정
-        binding.subjectList.layoutManager = LinearLayoutManager(requireContext())
-        binding?.subjectList?.adapter = PostListAdapter(viewModel)
+
+
 
 
         return view
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        binding = null
     }
 
 

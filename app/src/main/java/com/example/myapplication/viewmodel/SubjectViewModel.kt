@@ -10,36 +10,20 @@ import androidx.lifecycle.MutableLiveData
 class SubjectViewModel : ViewModel() {
     private val repository = SubjectRepository()
 
-    private val _subject = MutableLiveData<ArrayList<Subject>>("UNCHECKED_STRING")
-    val subject : LiveData<String> get()= _subject
+    // LiveData to hold the subjects
+    private val subjectsLiveData = MutableLiveData<List<Subject>>()
+    val subjects: LiveData<List<Subject>> get() = subjectsLiveData
 
-
-    var courseName: String = ""
-    var grade: String = ""
-    var credits: String = ""
-
-    val subjects = repository.getSubjects()
-
-    fun addSubject() {
-        val courseName = this.courseName
-        val grade = this.grade
-        val credits = this.credits
-
-        if (courseName.isNotBlank() && grade.isNotBlank() && credits.isNotBlank()) {
-            val subject = Subject(courseName, grade, credits)
-            repository.addSubject(subject)
-
-            // 데이터 입력 후 필드 초기화
-            this.courseName = ""
-            this.grade = ""
-            this.credits = ""
+    // Function to fetch subjects from the repository
+    fun fetchSubjectsFromRepository(semesterNumber: Int) {
+        repository.getSubjects(semesterNumber) { subjects ->
+            subjectsLiveData.postValue(subjects)
         }
     }
 
-    fun updateSelectedSemester(semester: String) {
-        selectedSemester = semester
+    // Function to add a subject to the repository
+    fun addSubjectToRepository(semesterNumber: Int, courseName: String, grade: Double, credits: Double) {
+        val subject = Subject(courseName, grade, credits)
+        repository.addSubject(semesterNumber, subject)
     }
-
-
-
 }
