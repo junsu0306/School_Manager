@@ -22,8 +22,8 @@ class SubjectViewModel : ViewModel() {
     }
 
     // Function to add a subject to the repository
-    fun addSubjectToRepository(semesterNumber: Int, courseName: String, grade: Double, credits: Double) {
-        val subject = Subject(courseName, grade, credits)
+    fun addSubjectToRepository(semesterNumber: Int, courseName: String, grade: Double, credits: Double, major:Double) {
+        val subject = Subject(courseName, grade, credits,major)
         repository.addSubject(semesterNumber, subject)
     }
 }

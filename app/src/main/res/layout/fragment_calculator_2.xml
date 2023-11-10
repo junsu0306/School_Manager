@@ -8,7 +8,6 @@
     tools:context=".calculator_2">
 
 
-
     <TextView
         android:id="@+id/txt_center1"
         android:layout_width="wrap_content"
@@ -16,7 +15,7 @@
         android:shadowColor="#40000000"
         android:shadowDy="4"
         android:shadowRadius="4"
-        android:text="나의 학점"
+        android:text="나의 과목"
         android:textColor="#000000"
         android:textSize="43sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -31,29 +30,29 @@
         android:layout_height="48dp"
         android:layout_marginTop="204dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="22dp"
+        android:layout_marginBottom="8dp"
         android:text="추가"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="408dp"
-        android:layout_height="457dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="415dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="16dp"
+        android:orientation="horizontal"
+
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-
-        app:layout_constraintVertical_bias="0.8">
-
+        app:layout_constraintStart_toStartOf="parent">
 
 
         <EditText
             android:id="@+id/txtCourse"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:hint="Course Name"
             android:text="" />
@@ -61,23 +60,66 @@
 
         <EditText
             android:id="@+id/txtGrade"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:hint="Grade"
             android:text="" />
 
         <EditText
             android:id="@+id/txtCredit"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:hint="Credits"
             android:text="" />
 
-
-
+        <EditText
+            android:id="@+id/txtMajor"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:hint="Major"
+            android:text="" />
 
 
     </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="226dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="95dp"
+        android:layout_marginTop="29dp"
+        android:layout_marginEnd="95dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_center1" />
+
+    <Spinner
+        android:id="@+id/spn_semester"
+        android:layout_width="100dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="415dp"
+        android:layout_height="386dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView_학기"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginBottom="8dp"
+        android:text="학기"
+        android:textSize="23sp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintStart_toEndOf="@+id/spn_semester" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
