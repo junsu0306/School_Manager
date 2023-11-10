@@ -61,10 +61,6 @@ class calculator_2 : Fragment() {
         }
 
 
-
-
-
-
         //버튼 눌렀을시 데이터 가져오기
         binding.addButton.setOnClickListener {
             val courseName = binding.txtCourse.text.toString()
