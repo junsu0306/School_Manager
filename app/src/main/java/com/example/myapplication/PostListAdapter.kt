@@ -1,9 +1,8 @@
-package com.example
+package com.example.myapplication
 
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.Recycler
 
 class PostListAdapter():RecyclerView.Adapter<PostListAdapter.ViewHolder>(){
     class ViewHolder(subjectView: View): RecyclerView.ViewHolder(subjectView){
