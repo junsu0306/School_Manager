@@ -33,16 +33,11 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-
-    buildFeatures{
-        viewBinding = true
-    }
 }
 
 dependencies {
 
     implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.recyclerview:recyclerview-selection:1.1.0")
     implementation ("androidx.navigation:navigation-fragment-ktx:2.3.5")
     implementation ("androidx.navigation:navigation-ui-ktx:2.3.5")
     implementation("androidx.appcompat:appcompat:1.6.1")
