@@ -5,6 +5,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <TextView
+        android:id="@+id/txt_calendar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="소학 캘린더"
+        android:textAlignment="center"
+        android:textSize="34sp"
+        android:textStyle="bold" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -12,11 +21,15 @@
         android:layout_marginBottom="20dp"
         android:orientation="horizontal">
 
-        <ImageButton
+        <TextView
             android:id="@+id/pre_btn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:text="<"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="25sp" />
 
         <TextView
             android:id="@+id/monthYearText"
@@ -25,15 +38,18 @@
             android:layout_weight="2"
             android:text="11월 2023"
             android:textAlignment="center"
-            android:textSize="25sp"
             android:textColor="@android:color/black"
-            />
+            android:textSize="25sp" />
 
-        <ImageButton
+        <TextView
             android:id="@+id/next_btn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:text=">"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="25sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -46,71 +62,76 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="일"
-            android:textStyle="bold"
-            android:textSize="18sp"
             android:textAlignment="center"
-            android:textColor="@android:color/holo_red_dark" />
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="월"
-            android:textStyle="bold"
-            android:textSize="18sp"
             android:textAlignment="center"
-            android:textColor="@android:color/black" />
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="화"
-            android:textStyle="bold"
-            android:textSize="18sp"
             android:textAlignment="center"
-            android:textColor="@android:color/black" />
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="수"
-            android:textStyle="bold"
-            android:textSize="18sp"
             android:textAlignment="center"
-            android:textColor="@android:color/black" />
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="목"
-            android:textStyle="bold"
-            android:textSize="18sp"
             android:textAlignment="center"
-            android:textColor="@android:color/black" />
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="금"
-            android:textStyle="bold"
-            android:textSize="18sp"
             android:textAlignment="center"
-            android:textColor="@android:color/black" />
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="토"
-            android:textStyle="bold"
-            android:textSize="18sp"
             android:textAlignment="center"
-            android:textColor="@android:color/holo_blue_dark" />
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="18sp"
+            android:textStyle="bold" />
     </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </LinearLayout>
 
