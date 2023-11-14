@@ -1,6 +1,7 @@
 package com.example.myapplication
 
 import SemesterAdapter
+import SubjectAdapter
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.Semester
 import com.example.myapplication.viewmodel.SubjectViewModel
 import com.example.myapplication.databinding.FragmentCalculator2Binding
@@ -75,11 +77,23 @@ class calculator_2 : Fragment() {
             binding.txtGrade.text.clear()
             binding.txtCredit.text.clear()
             binding.txtCredit.text.clear()
-
-
         }
 
 
+        // RecyclerView 초기화
+        val recyclerView: RecyclerView = binding.recyclerView
+        val subjectAdapter = SubjectAdapter()
+        recyclerView.adapter = subjectAdapter
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        // subjects LiveData를 Observer로 등록하여 데이터가 업데이트될 때마다 RecyclerView 갱신
+        viewModel.subjects.observe(viewLifecycleOwner) { subjects ->
+            subjectAdapter.submitList(subjects)
+        }
+
+        // 앱이 처음 실행될 때 Firebase에서 데이터를 불러와서 RecyclerView에 초기값으로 출력
+        val initialSemesterNumber = 1 // 예시로 1학기의 데이터를 초기값으로 사용
+        viewModel.fetchSubjectsFromRepository(initialSemesterNumber)
 
 
 
