@@ -31,12 +31,14 @@ class calculator_2 : Fragment() {
         val view = binding.root
 
 
+
         // 학기 목록 초기화
         val semesterArray = resources.getStringArray(R.array.semester_array)
         val semesterList = semesterArray.toList()
 
         // 스피너 어댑터 설정
-        val semesterAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, semesterList)
+        val semesterAdapter =
+            ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, semesterList)
         semesterAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spnSemester.adapter = semesterAdapter
 
@@ -46,15 +48,18 @@ class calculator_2 : Fragment() {
                 // 학기 선택 시 동작
                 val selectedSemester = if (position == AdapterView.INVALID_POSITION) {
                     // 아무 학기도 선택되지 않았을 때
-                    "1"
+                    1 // 기본값으로 1학기 선택
                 } else {
                     // 선택된 학기로 원하는 동작 수행
-                    semesterList[position]
+                    position + 1 // 스피너는 0부터 시작하므로 실제 학기는 position + 1
                 }
 
                 // 선택된 학기 정보 사용
                 // 예: Logcat에 출력
                 println("Selected Semester: $selectedSemester")
+
+                // 선택된 학기에 따라 데이터 로드
+                viewModel.fetchSubjectsFromRepository(selectedSemester)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
@@ -76,7 +81,7 @@ class calculator_2 : Fragment() {
             binding.txtCourse.text.clear()
             binding.txtGrade.text.clear()
             binding.txtCredit.text.clear()
-            binding.txtCredit.text.clear()
+            binding.txtMajor.text.clear()
         }
 
 
@@ -94,8 +99,6 @@ class calculator_2 : Fragment() {
         // 앱이 처음 실행될 때 Firebase에서 데이터를 불러와서 RecyclerView에 초기값으로 출력
         val initialSemesterNumber = 1 // 예시로 1학기의 데이터를 초기값으로 사용
         viewModel.fetchSubjectsFromRepository(initialSemesterNumber)
-
-
 
         return view
     }
