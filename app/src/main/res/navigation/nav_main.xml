@@ -8,8 +8,8 @@
     <fragment
         android:id="@+id/entryFragment"
         android:name="com.example.myapplication.entryFragment"
-        android:label="fragment_entry"
-        tools:layout="@layout/fragment_entry" >
+        android:label="메인 메뉴"
+        tools:layout="@layout/fragment_entry">
         <action
             android:id="@+id/action_entryFragment_to_calendar"
             app:destination="@id/calendar" />
@@ -19,17 +19,23 @@
         <action
             android:id="@+id/action_entryFragment_to_roadmap_1"
             app:destination="@id/roadmap_1" />
+        <action
+            android:id="@+id/action_entryFragment_to_calculator_2"
+            app:destination="@id/calculator_2" />
+        <action
+            android:id="@+id/action_entryFragment_to_roadmap_2"
+            app:destination="@id/roadmap_2" />
     </fragment>
     <fragment
         android:id="@+id/calendar"
         android:name="com.example.myapplication.calendar"
-        android:label="fragment_calendar"
+        android:label="캘린더"
         tools:layout="@layout/fragment_calendar" />
     <fragment
         android:id="@+id/calculator_1"
         android:name="com.example.myapplication.calculator_1"
-        android:label="fragment_calculator_1"
-        tools:layout="@layout/fragment_calculator_1" >
+        android:label="학점 계산기"
+        tools:layout="@layout/fragment_calculator_1">
         <action
             android:id="@+id/action_calculator_1_to_calculator_2"
             app:destination="@id/calculator_2" />
@@ -37,13 +43,13 @@
     <fragment
         android:id="@+id/calculator_2"
         android:name="com.example.myapplication.calculator_2"
-        android:label="fragment_calculator_2"
+        android:label="나의 학점"
         tools:layout="@layout/fragment_calculator_2" />
     <fragment
         android:id="@+id/roadmap_1"
         android:name="com.example.myapplication.roadmap_1"
-        android:label="fragment_roadmap_1"
-        tools:layout="@layout/fragment_roadmap_1" >
+        android:label="로드맵"
+        tools:layout="@layout/fragment_roadmap_1">
         <action
             android:id="@+id/action_roadmap_1_to_roadmap_2"
             app:destination="@id/roadmap_2" />
@@ -51,6 +57,6 @@
     <fragment
         android:id="@+id/roadmap_2"
         android:name="com.example.myapplication.roadmap_2"
-        android:label="fragment_roadmap_2"
+        android:label="전공과목"
         tools:layout="@layout/fragment_roadmap_2" />
 </navigation>

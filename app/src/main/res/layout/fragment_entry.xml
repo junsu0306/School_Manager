@@ -7,74 +7,61 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/txt_calendar"
+        android:id="@+id/txt_entry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
         android:text="메인 메뉴"
         android:textSize="34sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.048" />
+        app:layout_constraintVertical_chainStyle="packed" />
 
-    <Button
-        android:id="@+id/btn_fragcalculator2"
+    <LinearLayout
+        android:id="@+id/linearLayout3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:onClick="onButtonClick"
-        android:text="나의 학점"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_fragcalculator1" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_entry">
 
-    <Button
-        android:id="@+id/btn_fragroadmap2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="전공과목"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_fragroadmap1" />
+        <Button
+            android:id="@+id/btn_fragcalendar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="캘린더" />
 
-    <Button
-        android:id="@+id/btn_fragcalculator1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="216dp"
-        android:onClick="onButtonClick"
-        android:text="학점계산기"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_calendar" />
+        <Button
+            android:id="@+id/btn_fragcalculator1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="학점계산기" />
 
-    <Button
-        android:id="@+id/btn_fragroadmap1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="로드맵"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_fragcalendar" />
+        <Button
+            android:id="@+id/btn_fragcalculator2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="나의 학점" />
 
-    <Button
-        android:id="@+id/btn_fragcalendar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="캘린더"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_fragcalculator2" />
+        <Button
+            android:id="@+id/btn_fragroadmap1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="로드맵" />
+
+        <Button
+            android:id="@+id/btn_fragroadmap2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="전공과목" />
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,53 +4,57 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Locale
 
 class calendar : Fragment() {
 
-    private lateinit var monthYearText: TextView
+    private var _binding: CalendarBinding ?= null
+
     private lateinit var recyclerView: RecyclerView
 
-    private val calendar = Calendar.getInstance()
 
+    //view
+    private val binding get() = _binding
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_calendar, container, false)
+        _binding = CalendarBinding.inflate(inflater,container,false)
 
-        monthYearText = view.findViewById(R.id.monthYearText)
-        recyclerView = view.findViewById(R.id.recyclerView)
+        val view = binding?.root
 
-        updateMonthYearText()
+        initView(_binding!!)
 
-        recyclerView.layoutManager = LinearLayoutManager(context)
-
-        view.findViewById<TextView>(R.id.pre_btn).setOnClickListener {
-            adjustMonth(-1)
-        }
-
-        view.findViewById<TextView>(R.id.next_btn).setOnClickListener {
-            adjustMonth(1)
-        }
-
+        create_data()
         return view
     }
 
-    private fun adjustMonth(offset: Int) {
-        calendar.add(Calendar.MONTH, offset)
-        updateMonthYearText()
+    private fun initView(binding: CalendarBinding) {
+        recyclerView = binding.calRecycler
+        var position: Int = Int.MAX_VALUE / 2
+
+        binding?.calRecycler?.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding?.calRecycler?.adapter = Month_adpater()
+
+        //item의 위치 지정
+        binding?.calRecycler?.scrollToPosition(position)
+
+        //항목씩 스크롤 지정
+        val snap = PagerSnapHelper()
+        snap.attachToRecyclerView(binding?.calRecycler)
+
     }
 
-    private fun updateMonthYearText() {
-        val dateFormat = SimpleDateFormat("MM월 yyyy", Locale.getDefault())
-        val formattedDate = dateFormat.format(calendar.time)
-        monthYearText.text = formattedDate
+    private fun create_data() {
+        binding?.calRecycler?.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
