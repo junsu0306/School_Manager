@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_entryFragment_to_roadmap_1"
             app:destination="@id/roadmap_1" />
+        <action
+            android:id="@+id/action_entryFragment_to_calculator_2"
+            app:destination="@id/calculator_2" />
     </fragment>
     <fragment
         android:id="@+id/calendar"
@@ -29,11 +32,7 @@
         android:id="@+id/calculator_1"
         android:name="com.example.myapplication.calculator_1"
         android:label="fragment_calculator_1"
-        tools:layout="@layout/fragment_calculator_1" >
-        <action
-            android:id="@+id/action_calculator_1_to_calculator_2"
-            app:destination="@id/calculator_2" />
-    </fragment>
+        tools:layout="@layout/fragment_calculator_1" />
     <fragment
         android:id="@+id/calculator_2"
         android:name="com.example.myapplication.calculator_2"

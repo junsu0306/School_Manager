@@ -13,7 +13,8 @@ class SubjectRepository {
 
     fun addSubject(semesterNumber: Int, subject: Subject) {
         // Firebase Realtime Database에 데이터 추가
-        val semesterReference = subjectsReference.child("semesters").child(semesterNumber.toString())
+        val semesterReference =
+            subjectsReference.child("semesters").child(semesterNumber.toString())
         val newSubjectKey = semesterReference.push().key
         newSubjectKey?.let {
             semesterReference.child(it).setValue(subject)
@@ -22,7 +23,8 @@ class SubjectRepository {
 
     fun getSubjects(semesterNumber: Int, callback: (List<Subject>) -> Unit) {
         // Firebase Realtime Database에서 데이터 읽어오기
-        val semesterReference = subjectsReference.child("semesters").child(semesterNumber.toString())
+        val semesterReference =
+            subjectsReference.child("semesters").child(semesterNumber.toString())
         semesterReference.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val subjects = mutableListOf<Subject>()
@@ -40,4 +42,26 @@ class SubjectRepository {
             }
         })
     }
+
+    fun getAllSubjects(callback: (List<Subject>) -> Unit) {
+        val allSubjects = mutableListOf<Subject>()
+
+        subjectsReference.child("semesters")
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    for (semesterSnapshot in dataSnapshot.children) {
+                        for (subjectSnapshot in semesterSnapshot.children) {
+                            val subject = subjectSnapshot.getValue(Subject::class.java)
+                            subject?.let { allSubjects.add(it) }
+                        }
+                    }
+                    callback(allSubjects)
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    print("Error")
+                }
+            })
+    }
 }
+
