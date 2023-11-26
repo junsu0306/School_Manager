@@ -9,6 +9,6 @@ import androidx.fragment.app.FragmentTransaction
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_calculator_1) // calculator_1.xml 파일을 설정
+        setContentView(R.layout.fragment_calculator_1) // com.example.myapplication.calculator_1.xml 파일을 설정
     }
 }
