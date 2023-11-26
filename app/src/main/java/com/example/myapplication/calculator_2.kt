@@ -72,8 +72,8 @@ class calculator_2 : Fragment() {
         binding.addButton.setOnClickListener {
             val courseName = binding.txtCourse.text.toString()
             val grade = binding.txtGrade.text.toString().toDouble()
-            val credits = binding.txtCredit.text.toString().toDouble()
-            val major = binding.txtMajor.text.toString().toDouble()
+            val credits = binding.txtCredit.text.toString().toInt()
+            val major = binding.txtMajor.text.toString().toInt()
             val semesterNumber = binding.spnSemester.selectedItemPosition + 1
 
             // SubjectViewModel을 통해 Firebase에 데이터 추가

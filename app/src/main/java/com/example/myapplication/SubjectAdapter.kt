@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.Subject
 import com.example.myapplication.databinding.ItemSubjectBinding
 
-class SubjectAdapter : ListAdapter<Subject, SubjectAdapter.SubjectViewHolder>(SubjectDiffCallback()) {
+class  SubjectAdapter : ListAdapter<Subject, SubjectAdapter.SubjectViewHolder>(SubjectDiffCallback()) {
 
     // ViewHolder 클래스 정의
 

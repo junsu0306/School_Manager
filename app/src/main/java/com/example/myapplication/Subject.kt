@@ -3,10 +3,10 @@ package com.example.myapplication
 class Subject() {
     var courseName: String = ""
     var grade: Double = 0.0
-    var credits: Double = 0.0
-    var major: Double = 0.0
+    var credits: Int = 0
+    var major: Int = 0
 
-    constructor(courseName: String, grade: Double, credits: Double, major: Double) : this() {
+    constructor(courseName: String, grade: Double, credits: Int, major: Int) : this() {
         this.courseName = courseName
         this.grade = grade
         this.credits = credits
