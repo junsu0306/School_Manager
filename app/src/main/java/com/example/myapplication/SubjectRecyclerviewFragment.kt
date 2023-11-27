@@ -42,10 +42,12 @@ class SubjectRecyclerviewFragment : Fragment() {
         binding = FragmentSubjectRecyclerviewBinding.inflate(layoutInflater)
         //setContentView(binding.root)
 
-        binding.recSubjects.layoutManager = LinearLayoutManager(this)
+        binding.recSubjects.layoutManager = LinearLayoutManager(context)
         binding.recSubjects.adapter = SubjectsAdapter(subjects)
 
     }
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

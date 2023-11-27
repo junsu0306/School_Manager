@@ -18,8 +18,9 @@ class MainActivity : AppCompatActivity() {
 
         val binding = ActivityMainBinding.inflate(layoutInflater)
         val navController = binding.frgNav.getFragment<NavHostFragment>().navController
-        setupActionBarWithNavController(navController) // 액션바를 설정한 각각의 label로 보이게 하기
+
         setContentView(binding.root)
+
     }
 
     // back 버튼에 대하여
