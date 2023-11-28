@@ -42,9 +42,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="<"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:text="이전달"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/txt_calmonth"
@@ -60,9 +59,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text=">"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:text="다음달"
+            android:textSize="20sp" />
 
     </LinearLayout>
 
