@@ -52,6 +52,13 @@ class SubjectViewModel : ViewModel() {
         // Update LiveData for averages
         averagesLiveData.postValue(Averages(totalAverage, majorAverage, generalAverage))
     }
+    // LiveData to hold semester averages
+    private val semesterAveragesLiveData = MutableLiveData<List<Double>>()
+    val semesterAverages: LiveData<List<Double>> get() = semesterAveragesLiveData
+
+
+
+
 
     data class Averages(val totalAverage: Double, val majorAverage: Double, val generalAverage: Double)
 

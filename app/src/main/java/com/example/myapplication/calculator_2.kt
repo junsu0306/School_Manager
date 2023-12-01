@@ -2,6 +2,7 @@ package com.example.myapplication
 
 import SemesterAdapter
 import SubjectAdapter
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -84,6 +85,11 @@ class calculator_2 : Fragment() {
             binding.txtMajor.text.clear()
         }
 
+        binding.mainButton2.setOnClickListener {
+            val intent = Intent(requireActivity(), MainActivity::class.java)
+            startActivity(intent)
+        }
+
 
         // RecyclerView 초기화
         val recyclerView: RecyclerView = binding.recyclerView
@@ -94,11 +100,19 @@ class calculator_2 : Fragment() {
         // subjects LiveData를 Observer로 등록하여 데이터가 업데이트될 때마다 RecyclerView 갱신
         viewModel.subjects.observe(viewLifecycleOwner) { subjects ->
             subjectAdapter.submitList(subjects)
+
         }
 
         // 앱이 처음 실행될 때 Firebase에서 데이터를 불러와서 RecyclerView에 초기값으로 출력
         val initialSemesterNumber = 1 // 예시로 1학기의 데이터를 초기값으로 사용
         viewModel.fetchSubjectsFromRepository(initialSemesterNumber)
+
+        binding.Buttonrestart.setOnClickListener {
+            val selectedSemester = binding.spnSemester.selectedItemPosition + 1
+            viewModel.fetchSubjectsFromRepository(selectedSemester)
+        }
+
+
 
         return view
     }
