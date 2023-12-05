@@ -1,10 +1,13 @@
 package com.example.myapplication
 
 class Subject() {
+
     var courseName: String = ""
     var grade: Double = 0.0
     var credits: Int = 0
     var major: Int = 0
+
+
 
     constructor(courseName: String, grade: Double, credits: Int, major: Int) : this() {
         this.courseName = courseName
@@ -37,3 +40,4 @@ class Subject() {
 
 class Semester(val semesterName: String, val subjects: List<Subject>)
 
+data class SemesterInfo(val semesterNumber: Int, val subjects: List<Subject>)

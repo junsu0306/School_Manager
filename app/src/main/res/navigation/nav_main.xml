@@ -37,14 +37,18 @@
         android:label="학점 계산기"
         tools:layout="@layout/fragment_calculator_1">
         <action
-            android:id="@+id/action_calculator_1_to_calculator_2"
-            app:destination="@id/calculator_2" />
+            android:id="@+id/action_calculator_1_to_entryFragment"
+            app:destination="@id/entryFragment" />
     </fragment>
     <fragment
         android:id="@+id/calculator_2"
         android:name="com.example.myapplication.calculator_2"
         android:label="나의 학점"
-        tools:layout="@layout/fragment_calculator_2" />
+        tools:layout="@layout/fragment_calculator_2" >
+        <action
+            android:id="@+id/action_calculator_2_to_entryFragment"
+            app:destination="@id/entryFragment" />
+    </fragment>
     <fragment
         android:id="@+id/roadmap_1"
         android:name="com.example.myapplication.roadmap_1"
