@@ -1,6 +1,5 @@
 package com.example.myapplication
 
-import SemesterAdapter
 import SubjectAdapter
 import android.content.Intent
 import android.os.Bundle
@@ -13,63 +12,44 @@ import android.widget.ArrayAdapter
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication.Semester
-import com.example.myapplication.viewmodel.SubjectViewModel
 import com.example.myapplication.databinding.FragmentCalculator2Binding
-
+import com.example.myapplication.viewmodel.SubjectViewModel
 
 class calculator_2 : Fragment() {
-    private lateinit var binding: FragmentCalculator2Binding // 바인딩 변수
+    // 바인딩 객체 초기화
+    private lateinit var binding: FragmentCalculator2Binding
 
+    // ViewModel 객체 지연 초기화
     private val viewModel: SubjectViewModel by activityViewModels()
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // 레이아웃을 인플레이트하여 바인딩 객체를 초기화합니다.
         binding = FragmentCalculator2Binding.inflate(inflater, container, false)
         val view = binding.root
 
-
-
-        // 학기 목록 초기화
+        // 학기 목록을 초기화하고 스피너 어댑터를 설정합니다.
         val semesterArray = resources.getStringArray(R.array.semester_array)
         val semesterList = semesterArray.toList()
-
-        // 스피너 어댑터 설정
-        val semesterAdapter =
-            ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, semesterList)
+        val semesterAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, semesterList)
         semesterAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spnSemester.adapter = semesterAdapter
 
-        // 스피너 아이템 선택 리스너
+        // 스피너에서 학기를 선택할 때의 동작을 정의합니다.
         binding.spnSemester.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-                // 학기 선택 시 동작
-                val selectedSemester = if (position == AdapterView.INVALID_POSITION) {
-                    // 아무 학기도 선택되지 않았을 때
-                    1 // 기본값으로 1학기 선택
-                } else {
-                    // 선택된 학기로 원하는 동작 수행
-                    position + 1 // 스피너는 0부터 시작하므로 실제 학기는 position + 1
-                }
-
-                // 선택된 학기 정보 사용
-                // 예: Logcat에 출력
-                println("Selected Semester: $selectedSemester")
-
-                // 선택된 학기에 따라 데이터 로드
+                val selectedSemester = if (position == AdapterView.INVALID_POSITION) 1 else position + 1
                 viewModel.fetchSubjectsFromRepository(selectedSemester)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
-                // 아무 것도 선택되지 않았을 때의 동작
+                // 아무 것도 선택되지 않았을 때 동작
             }
         }
 
-
-        //버튼 눌렀을시 데이터 가져오기
+        // 과목 추가 버튼에 대한 동작을 정의합니다.
         binding.addButton.setOnClickListener {
             val courseName = binding.txtCourse.text.toString()
             val grade = binding.txtGrade.text.toString().toDouble()
@@ -77,7 +57,6 @@ class calculator_2 : Fragment() {
             val major = binding.txtMajor.text.toString().toInt()
             val semesterNumber = binding.spnSemester.selectedItemPosition + 1
 
-            // SubjectViewModel을 통해 Firebase에 데이터 추가
             viewModel.addSubjectToRepository(semesterNumber, courseName, grade, credits, major)
             binding.txtCourse.text.clear()
             binding.txtGrade.text.clear()
@@ -85,43 +64,33 @@ class calculator_2 : Fragment() {
             binding.txtMajor.text.clear()
         }
 
+        // 메인 액티비티로 돌아가는 버튼에 대한 동작을 정의합니다.
         binding.mainButton2.setOnClickListener {
             val intent = Intent(requireActivity(), MainActivity::class.java)
             startActivity(intent)
         }
 
-
-        // RecyclerView 초기화
+        // RecyclerView를 초기화하고 어댑터를 설정합니다.
         val recyclerView: RecyclerView = binding.recyclerView
         val subjectAdapter = SubjectAdapter()
         recyclerView.adapter = subjectAdapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        // subjects LiveData를 Observer로 등록하여 데이터가 업데이트될 때마다 RecyclerView 갱신
+        // ViewModel의 subjects LiveData를 관찰하여 RecyclerView를 갱신합니다.
         viewModel.subjects.observe(viewLifecycleOwner) { subjects ->
             subjectAdapter.submitList(subjects)
-
         }
 
-        // 앱이 처음 실행될 때 Firebase에서 데이터를 불러와서 RecyclerView에 초기값으로 출력
-        val initialSemesterNumber = 1 // 예시로 1학기의 데이터를 초기값으로 사용
+        // 앱이 처음 실행될 때 기본 학기 데이터를 불러옵니다.
+        val initialSemesterNumber = 1
         viewModel.fetchSubjectsFromRepository(initialSemesterNumber)
 
+        // '새로고침' 버튼에 대한 동작을 정의합니다.
         binding.Buttonrestart.setOnClickListener {
             val selectedSemester = binding.spnSemester.selectedItemPosition + 1
             viewModel.fetchSubjectsFromRepository(selectedSemester)
         }
 
-
-
         return view
     }
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
-
 }
