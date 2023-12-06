@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.databinding.ListSubjectsBinding
 
-class SubjectsAdapter(val subjects: Array<SubjectInfo>)
+class SubjectsAdapter(val subjects: Array<SubjectInfo>) //SubjectInfo 배열을 데이터로 사용
     : RecyclerView.Adapter<SubjectsAdapter.Holder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val binding = ListSubjectsBinding.inflate(LayoutInflater.from(parent.context))
