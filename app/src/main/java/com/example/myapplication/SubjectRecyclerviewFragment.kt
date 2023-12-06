@@ -41,5 +41,4 @@ class SubjectRecyclerviewFragment : Fragment() {
         binding.recSubjects.adapter = SubjectsAdapter(subjects)
         return binding.root
     }
-
 }
